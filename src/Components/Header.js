@@ -46,8 +46,8 @@ function Header({ location: { pathname } }) {
           </SLink>
         </Item>
         <Item>
-          <SLink to="/tv" current={pathname === "/tv"}>
-            TV
+          <SLink to="/tvshows" current={pathname === "/tvshows"}>
+            TV Shows
           </SLink>
         </Item>
         <Item>
@@ -66,3 +66,4 @@ function Header({ location: { pathname } }) {
 }
 
 export default withRouter(Header);
+/* Header needs aid of withRouter to get pathname, because in App.js, Header is not contained in <Route /> */

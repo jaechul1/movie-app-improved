@@ -8,11 +8,11 @@ const api = axios.create({
   },
 });
 
-export const tvApi = {
+export const tvshowsApi = {
   topRated: () => api.get("tv/top_rated"),
   popular: () => api.get("tv/popular"),
   airingToday: () => api.get("tv/airing_today"),
-  tvDetail: (id) =>
+  tvshowDetail: (id) =>
     api.get(`tv/${id}`, {
       params: {
         append_to_response: "videos",
