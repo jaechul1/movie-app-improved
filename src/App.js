@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./routes/Home";
-import TV from "./routes/TV";
-import Movies from "./routes/Movies";
-import Search from "./routes/Search";
-import GlobalStyles from "./components/GlobalStyles";
+import Header from "./Components/Header";
+import Home from "./Routes/Home";
+import TV from "./Routes/TV";
+import Movies from "./Routes/Movies";
+import Search from "./Routes/Search";
+import GlobalStyles from "./Components/GlobalStyles";
 
 function App() {
   return (
