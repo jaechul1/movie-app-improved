@@ -15,7 +15,6 @@ class MoviesContainer extends React.Component {
         data: { results: popular },
       } = await moviesApi.popular();
       this.setState({ popular });
-      console.log(this.state);
     } catch {
       this.setState({
         error: "Movies Error",

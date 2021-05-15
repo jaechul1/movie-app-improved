@@ -38,9 +38,9 @@ const globalStyles = createGlobalStyle`
     }
     body {
         color: white;
-        font-size: 14px;
+        font-size: 1.5vw;
         background-color: black;
-        padding-top: 15vh;
+        padding-top: 18vh;
     }
 `;
 

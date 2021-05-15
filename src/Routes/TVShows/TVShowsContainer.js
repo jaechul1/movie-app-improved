@@ -19,7 +19,6 @@ class TVShowsContainer extends React.Component {
         data: { results: popular },
       } = await tvshowsApi.popular();
       this.setState({ topRated, popular });
-      console.log(this.state);
     } catch {
       this.setState({
         error: "TV Shows Error",

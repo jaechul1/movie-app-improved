@@ -17,11 +17,15 @@ class HomeContainer extends React.Component {
         data: { results: nowPlaying },
       } = await moviesApi.nowPlaying();
       const {
-        data: { results: upcoming },
+        data: { results: upcomingCand },
       } = await moviesApi.upcoming();
       const {
         data: { results: airingToday },
       } = await tvshowsApi.airingToday();
+      const nowPlayingTitles = nowPlaying.map((movie) => movie.title);
+      const upcoming = upcomingCand.filter(
+        (movie) => !nowPlayingTitles.includes(movie.title)
+      );
       this.setState({ nowPlaying, upcoming, airingToday });
     } catch {
       this.setState({
