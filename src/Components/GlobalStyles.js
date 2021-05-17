@@ -14,7 +14,7 @@ const globalStyles = createGlobalStyle`
         color: white;
         font-size: 1.5vw;
         background-color: black;
-        padding-top: calc(6vw + 10vh);
+        padding-top: calc(4vw + 6vh);
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 `;

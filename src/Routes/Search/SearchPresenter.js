@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
 import Section from "../../Components/Section";
@@ -9,7 +10,7 @@ import Poster from "../../Components/Poster";
 const Container = styled.div``;
 
 const Form = styled.form`
-  margin: 0 3vw calc(2vw + 2vh) 3vw;
+  margin: 3vh 3vw calc(2vw + 2vh) 3vw;
 `;
 
 const Input = styled.input`
@@ -18,7 +19,7 @@ const Input = styled.input`
   font-size: 2vw;
 `;
 
-function SearchPresenter({
+const SearchPresenter = ({
   tvshowResults,
   movieResults,
   searchTerm,
@@ -26,8 +27,11 @@ function SearchPresenter({
   loading,
   handleSubmit,
   updateTerm,
-}) {
-  return (
+}) => (
+  <>
+    <Helmet>
+      <title>Search | MAI</title>
+    </Helmet>
     <Container>
       <Form onSubmit={handleSubmit}>
         <Input
@@ -85,8 +89,8 @@ function SearchPresenter({
           <Message text="No results found" color="gray" />
         )}
     </Container>
-  );
-}
+  </>
+);
 
 SearchPresenter.propTypes = {
   tvshowResults: PropTypes.array,

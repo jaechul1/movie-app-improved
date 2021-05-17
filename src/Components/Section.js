@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 0 3vw 10vh 3vw;
+  margin: 3vh 3vw 5vh 3vw;
 `;
 
 const Title = styled.span`

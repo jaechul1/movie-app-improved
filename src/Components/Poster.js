@@ -10,7 +10,7 @@ const Image = styled.div`
   background-size: cover;
   height: 19vw;
   border-radius: 10%;
-  box-shadow: 0 0 3px white;
+  box-shadow: 0 0 1px white;
   background-position: center center;
   transition: opacity 0.1s linear;
 `;

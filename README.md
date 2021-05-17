@@ -18,3 +18,16 @@ https://nomadcoders.co/react-for-beginners/
 - Airing Today (TV)
 - Detail (TV, Movie)
 - Search (TV, Movie)
+
+## Code Challenges
+
+#### Look at API docs about detail and create some more tabs
+
+- [] Youtube videos
+- [] production companies (+logo)
+- [] homepage
+- [] imdb link
+- [] spoken language (+flag)
+- [] series or collection belonged (Route /collection for movies)
+- [] seasons (+episodes) (for TV shows)
+- [] created by (+photos) (for TV shows)
