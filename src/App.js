@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { HashRouter, Route, Redirect, Switch } from "react-router-dom";
 import Header from "./Components/Header";
 import Home from "./Routes/Home";
 import TVShows from "./Routes/TVShows";
@@ -9,7 +9,7 @@ import GlobalStyles from "./Components/GlobalStyles";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <GlobalStyles />
       <Header />
       <Switch>
@@ -21,7 +21,7 @@ function App() {
         <Route path="/movie/:id" component={Detail} />
         <Redirect from="*" to="/" />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

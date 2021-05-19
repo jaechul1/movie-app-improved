@@ -8,16 +8,15 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Title = styled.span`
-  font-size: 10vw;
+const Loading = styled.img`
+  width: 5vw;
+  height: auto;
 `;
 
 function Loader() {
   return (
     <Container>
-      <Title>
-        <i className="far fa-clock"></i>
-      </Title>
+      <Loading src={require("../assets/loading.gif").default} alt="loading" />
     </Container>
   );
 }

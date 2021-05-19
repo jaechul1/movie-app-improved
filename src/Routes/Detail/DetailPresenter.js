@@ -42,11 +42,13 @@ const Cover = styled.div`
 
 const Data = styled.div`
   width: 72%;
-  padding: 2vh 0 2vh 3vw;
+  padding-left: 3vw;
+  display: flex;
+  flex-direction: column;
 `;
 
 const HeaderBox = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -65,13 +67,13 @@ const Title = styled.div`
 const Imdb = styled.div`
   font-size: 1.5vw;
   color: #f5c518;
-  margin-left: 0.5vw;
+  margin-right: 0.5vw;
 `;
 
 const Homepage = styled.div`
   font-size: 1.5vw;
   opacity: 0.5;
-  margin-left: 0.5vw;
+  margin-right: 0.5vw;
 `;
 
 const RatingBox = styled.div`
@@ -111,14 +113,30 @@ const ItemContainer = styled.div`
 const Item = styled.span``;
 
 const Divider = styled.span`
-  margin: 0 0.5vw;
+  margin: 0 0.3vw;
 `;
 
 const Overview = styled.p`
-  width: 70%;
+  width: 100%;
   font-size: 1.2vw;
   opacity: 0.8;
   line-height: 1.5;
+`;
+
+const YoutubeEmbed = styled.div`
+  border-radius: 3%;
+  margin-top: 2vh;
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+  & iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
 `;
 
 const DetailPresenter = ({ result, error, loading }) =>
@@ -132,7 +150,7 @@ const DetailPresenter = ({ result, error, loading }) =>
   ) : (
     <Container>
       <Helmet>
-        <title>{result.original_title || result.original_name} | MAI</title>
+        <title>{result.title || result.name} | MAI</title>
       </Helmet>
       <Backdrop
         bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
@@ -148,7 +166,9 @@ const DetailPresenter = ({ result, error, loading }) =>
         <Data>
           <HeaderBox>
             <TitleBox>
-              <Title>{result.original_title || result.original_name}</Title>
+              <Title>{result.title || result.name}</Title>
+            </TitleBox>
+            <RatingBox>
               {result.imdb_id && (
                 <Imdb>
                   <a
@@ -167,8 +187,6 @@ const DetailPresenter = ({ result, error, loading }) =>
                   </a>
                 </Homepage>
               )}
-            </TitleBox>
-            <RatingBox>
               <Star>
                 <i class="fas fa-star"></i>
               </Star>
@@ -207,11 +225,31 @@ const DetailPresenter = ({ result, error, loading }) =>
                 result.genres.map((genre, index) =>
                   index + 1 === result.genres.length
                     ? genre.name
-                    : `${genre.name} / `
+                    : `${genre.name}, `
                 )}
             </Item>
           </ItemContainer>
-          <Overview>{result.overview}</Overview>
+          <Overview>
+            {result.overview.length > 500
+              ? `${result.overview.substring(
+                  0,
+                  (result.overview + " ").lastIndexOf(" ", 500)
+                )}...`
+              : result.overview}
+          </Overview>
+          {result.videos.results[0] && (
+            <YoutubeEmbed>
+              <iframe
+                width="853"
+                height="480"
+                src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={`${result.title || result.name} Embedded`}
+              />
+            </YoutubeEmbed>
+          )}
         </Data>
       </Content>
       {error && <Message text={error} color="red" />}

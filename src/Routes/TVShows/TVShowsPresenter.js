@@ -25,7 +25,7 @@ const TVShowsPresenter = ({ topRated, popular, error, loading }) => (
                 key={tvshow.id}
                 id={tvshow.id}
                 imageUrl={tvshow.poster_path}
-                title={tvshow.original_name}
+                title={tvshow.name}
                 rating={tvshow.vote_average}
                 year={
                   tvshow.first_air_date &&
@@ -43,7 +43,7 @@ const TVShowsPresenter = ({ topRated, popular, error, loading }) => (
                 key={tvshow.id}
                 id={tvshow.id}
                 imageUrl={tvshow.poster_path}
-                title={tvshow.original_name}
+                title={tvshow.name}
                 rating={tvshow.vote_average}
                 year={
                   tvshow.first_air_date &&
