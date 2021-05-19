@@ -23,11 +23,7 @@ https://nomadcoders.co/react-for-beginners/
 
 #### Look at API docs about detail and create some more tabs
 
-- [] Youtube videos
-- [] production companies (+logo)
-- [] homepage
-- [] imdb link
-- [] spoken language (+flag)
+- [x] homepage
+- [x] imdb link
 - [] series or collection belonged (Route /collection for movies)
 - [] seasons (+episodes) (for TV shows)
-- [] created by (+photos) (for TV shows)

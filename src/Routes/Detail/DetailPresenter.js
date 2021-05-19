@@ -45,8 +45,61 @@ const Data = styled.div`
   padding: 2vh 0 2vh 3vw;
 `;
 
-const Title = styled.span`
+const HeaderBox = styled.div`
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+const TitleBox = styled.div`
+  width: 80%;
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Title = styled.div`
   font-size: 2vw;
+`;
+
+const Imdb = styled.div`
+  font-size: 1.5vw;
+  color: #f5c518;
+  margin-left: 0.5vw;
+`;
+
+const Homepage = styled.div`
+  font-size: 1.5vw;
+  opacity: 0.5;
+  margin-left: 0.5vw;
+`;
+
+const RatingBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Star = styled.div`
+  font-size: 1.3vw;
+  color: #e4bb24;
+`;
+
+const Rating = styled.div`
+  font-size: 1vw;
+  margin-left: 0.3vw;
+`;
+
+const SmallText = styled.span`
+  font-size: 0.5vw;
+  opacity: 0.6;
+`;
+
+const Count = styled.div`
+  font-size: 0.7vw;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.1vh;
 `;
 
 const ItemContainer = styled.div`
@@ -93,7 +146,45 @@ const DetailPresenter = ({ result, error, loading }) =>
           }
         />
         <Data>
-          <Title>{result.original_title || result.original_name}</Title>
+          <HeaderBox>
+            <TitleBox>
+              <Title>{result.original_title || result.original_name}</Title>
+              {result.imdb_id && (
+                <Imdb>
+                  <a
+                    href={`https://www.imdb.com/title/${result.imdb_id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i class="fab fa-imdb"></i>
+                  </a>
+                </Imdb>
+              )}
+              {result.homepage && (
+                <Homepage>
+                  <a href={result.homepage} target="_blank" rel="noreferrer">
+                    <i class="fas fa-link"></i>
+                  </a>
+                </Homepage>
+              )}
+            </TitleBox>
+            <RatingBox>
+              <Star>
+                <i class="fas fa-star"></i>
+              </Star>
+              <Rating>
+                <div>
+                  <span>{result.vote_average}</span>
+                  <SmallText>/10</SmallText>
+                </div>
+                <Count>
+                  {result.vote_count
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </Count>
+              </Rating>
+            </RatingBox>
+          </HeaderBox>
           <ItemContainer>
             <Item>
               {result.release_date
@@ -107,7 +198,7 @@ const DetailPresenter = ({ result, error, loading }) =>
               {result.runtime
                 ? `${result.runtime} min`
                 : result.episode_run_time
-                ? `${result.episode_run_time} min`
+                ? `${result.episode_run_time[0]} min`
                 : "TBA"}
             </Item>
             <Divider>&nbsp;•&nbsp;</Divider>

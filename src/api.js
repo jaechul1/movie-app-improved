@@ -30,6 +30,7 @@ export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
   popular: () => api.get("movie/popular"),
   upcoming: () => api.get("movie/upcoming"),
+  topRated: () => api.get("movie/top_rated"),
   movieDetail: (id) =>
     api.get(`movie/${id}`, {
       params: {

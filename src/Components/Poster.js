@@ -19,7 +19,7 @@ const Rating = styled.span`
   position: absolute;
   bottom: 1vh;
   right: 0.5vw;
-  color: yellow;
+  color: #e4bb24;
   opacity: 0;
   transition: opacity 0.1s linear;
   font-size: 1.7vw;

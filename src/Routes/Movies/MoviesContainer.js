@@ -5,6 +5,7 @@ import { moviesApi } from "../../api";
 class MoviesContainer extends React.Component {
   state = {
     popular: null,
+    topRated: null,
     error: null,
     loading: true,
   };
@@ -14,7 +15,10 @@ class MoviesContainer extends React.Component {
       const {
         data: { results: popular },
       } = await moviesApi.popular();
-      this.setState({ popular });
+      const {
+        data: { results: topRated },
+      } = await moviesApi.topRated();
+      this.setState({ popular, topRated });
     } catch {
       this.setState({
         error: "Movies Error",
@@ -26,12 +30,7 @@ class MoviesContainer extends React.Component {
     }
   }
 
-  render() {
-    const { popular, error, loading } = this.state;
-    return (
-      <MoviesPresenter popular={popular} error={error} loading={loading} />
-    );
-  }
+  render = () => <MoviesPresenter {...this.state} />;
 }
 
 export default MoviesContainer;

@@ -18,9 +18,9 @@ const TVShowsPresenter = ({ topRated, popular, error, loading }) => (
       <Loader />
     ) : (
       <Container>
-        {topRated && topRated.length > 0 && (
-          <Section title="Top Rated">
-            {topRated.map((tvshow) => (
+        {popular && popular.length > 0 && (
+          <Section title="Popular">
+            {popular.map((tvshow) => (
               <Poster
                 key={tvshow.id}
                 id={tvshow.id}
@@ -36,9 +36,9 @@ const TVShowsPresenter = ({ topRated, popular, error, loading }) => (
             ))}
           </Section>
         )}
-        {popular && popular.length > 0 && (
-          <Section title="Popular">
-            {popular.map((tvshow) => (
+        {topRated && topRated.length > 0 && (
+          <Section title="Top Rated">
+            {topRated.map((tvshow) => (
               <Poster
                 key={tvshow.id}
                 id={tvshow.id}
