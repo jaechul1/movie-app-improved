@@ -15,6 +15,8 @@ const List = styled.ul`
   height: 100%;
   display: flex;
   align-items: center;
+  position: relative;
+  bottom: 0.5vh;
 `;
 
 const Item = styled.li`
@@ -25,7 +27,7 @@ const Item = styled.li`
 const SLink = styled(Link)`
   font-weight: 700;
   border-radius: 1.5vw;
-  padding: 1.2vh 3vw;
+  padding: 1.5vh 3vw;
   box-shadow: ${(props) =>
     props.current ? "0 0.5vh 0.8vh rgb(173, 216, 230)" : "transparent"};
   transition: box-shadow ease-in-out 0.2s;
@@ -43,7 +45,7 @@ function Header({ location: { pathname } }) {
       <List>
         <Item>
           <SLink to="/" current={pathname === "/" ? "Yes" : null}>
-            Home
+            Trending
           </SLink>
         </Item>
         <Item>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DetailPresenter from "./DetailPresenter";
 import { tvshowsApi, moviesApi } from "../../api";
+import useTitle from "../../Hooks/useTitle";
 
 const Detail = ({
   location: { pathname },
@@ -9,6 +10,7 @@ const Detail = ({
     params: { id },
   },
 }) => {
+  const titleUpdater = useTitle("Loading | MAI");
   const [rs, setRs] = useState(null);
   const [er, setEr] = useState(null);
   const [ld, setLd] = useState(true);
@@ -34,8 +36,16 @@ const Detail = ({
   };
   useEffect(() => {
     getResults();
+    // eslint-disable-next-line
   }, []);
-  return <DetailPresenter result={rs} error={er} loading={ld} />;
+  return (
+    <DetailPresenter
+      result={rs}
+      error={er}
+      loading={ld}
+      titleUpdater={titleUpdater}
+    />
+  );
 };
 
 export default Detail;

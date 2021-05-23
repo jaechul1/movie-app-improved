@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import Helmet from "react-helmet";
+import styled, { keyframes } from "styled-components";
 import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
+
+const Animation = keyframes`
+  0% {opacity: 0; transform: translateY(5vh);};
+  100% {opacity: 1; transform: translateY(0);};
+`;
 
 const Container = styled.div`
   height: calc(94vh - 4vw);
   position: relative;
+  animation: ${Animation} 1s ease-out;
 `;
 
 const Backdrop = styled.div`
@@ -37,7 +42,6 @@ const Cover = styled.div`
   background-position: center center;
   background-size: cover;
   border-radius: 3%;
-  box-shadow: 0 0 1px white;
 `;
 
 const Data = styled.div`
@@ -139,19 +143,12 @@ const YoutubeEmbed = styled.div`
   }
 `;
 
-const DetailPresenter = ({ result, error, loading }) =>
+const DetailPresenter = ({ result, error, loading, titleUpdater }) =>
   loading ? (
-    <>
-      <Helmet>
-        <title>Loading | MAI</title>
-      </Helmet>
-      <Loader />
-    </>
+    <Loader />
   ) : (
     <Container>
-      <Helmet>
-        <title>{result.title || result.name} | MAI</title>
-      </Helmet>
+      {titleUpdater(`${result.title || result.name} | MAI`)}
       <Backdrop
         bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
       />
@@ -216,17 +213,22 @@ const DetailPresenter = ({ result, error, loading }) =>
               {result.runtime
                 ? `${result.runtime} min`
                 : result.episode_run_time
-                ? `${result.episode_run_time[0]} min`
+                ? result.episode_run_time[0]
+                  ? `${result.episode_run_time[0]} min`
+                  : "TBA"
                 : "TBA"}
             </Item>
             <Divider>&nbsp;•&nbsp;</Divider>
             <Item>
-              {result.genres &&
-                result.genres.map((genre, index) =>
-                  index + 1 === result.genres.length
-                    ? genre.name
-                    : `${genre.name}, `
-                )}
+              {result.genres
+                ? result.genres.length > 0
+                  ? result.genres.map((genre, index) =>
+                      index + 1 === result.genres.length
+                        ? genre.name
+                        : `${genre.name}, `
+                    )
+                  : "TBA"
+                : "TBA"}
             </Item>
           </ItemContainer>
           <Overview>

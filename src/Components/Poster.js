@@ -8,11 +8,10 @@ const Container = styled.div``;
 const Image = styled.div`
   background-image: url(${(props) => props.bgUrl});
   background-size: cover;
-  height: 19vw;
+  height: 18vw;
   border-radius: 10%;
-  box-shadow: 0 0 1px white;
   background-position: center center;
-  transition: opacity 0.1s linear;
+  transition: opacity 0.2s linear;
 `;
 
 const Rating = styled.span`
@@ -21,7 +20,7 @@ const Rating = styled.span`
   right: 0.5vw;
   color: #e4bb24;
   opacity: 0;
-  transition: opacity 0.1s linear;
+  transition: opacity 0.2s linear;
   font-size: 1.7vw;
 `;
 
@@ -65,7 +64,7 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => {
           </Rating>
         </ImageContainer>
         <Title>
-          {title.length > 15 ? `${title.substring(0, 15)}...` : title}
+          {title.length > 30 ? `${title.substring(0, 30)}...` : title}
         </Title>
         <Year>{year}</Year>
       </Container>

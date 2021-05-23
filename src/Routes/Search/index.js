@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import SearchPresenter from "./SearchPresenter";
 import { tvshowsApi, moviesApi } from "../../api";
+import useTitle from "../../Hooks/useTitle";
 
 const Search = () => {
+  useTitle("Search | MAI");
   const [ts, SetTs] = useState(null);
   const [mv, SetMv] = useState(null);
   const [st, SetSt] = useState("");

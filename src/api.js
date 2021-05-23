@@ -29,7 +29,6 @@ export const tvshowsApi = {
 
 export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
-  popular: () => api.get("movie/popular"),
   upcoming: () => api.get("movie/upcoming"),
   topRated: () => api.get("movie/top_rated"),
   movieDetail: (id) =>
@@ -46,3 +45,10 @@ export const moviesApi = {
       },
     }),
 };
+
+export const trendingApi = (page = 1) =>
+  api.get("trending/all/day", {
+    params: {
+      page: page,
+    },
+  });

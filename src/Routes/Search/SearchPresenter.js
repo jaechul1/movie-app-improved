@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Helmet from "react-helmet";
 import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
 import Section from "../../Components/Section";
@@ -28,68 +27,60 @@ const SearchPresenter = ({
   handleSubmit,
   updateTerm,
 }) => (
-  <>
-    <Helmet>
-      <title>Search | MAI</title>
-    </Helmet>
-    <Container>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          placeholder="Search Movies or TV Shows"
-          value={searchTerm}
-          onChange={updateTerm}
-        />
-      </Form>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          {movieResults && movieResults.length > 0 && (
-            <Section title="Movie Results">
-              {movieResults.map((movie) => (
-                <Poster
-                  key={movie.id}
-                  id={movie.id}
-                  imageUrl={movie.poster_path}
-                  title={movie.title}
-                  rating={movie.vote_average}
-                  year={
-                    movie.release_date && movie.release_date.substring(0, 4)
-                  }
-                  isMovie={true}
-                ></Poster>
-              ))}
-            </Section>
-          )}
-          {tvshowResults && tvshowResults.length > 0 && (
-            <Section title="TV Show Results">
-              {tvshowResults.map((tvshow) => (
-                <Poster
-                  key={tvshow.id}
-                  id={tvshow.id}
-                  imageUrl={tvshow.poster_path}
-                  title={tvshow.name}
-                  rating={tvshow.vote_average}
-                  year={
-                    tvshow.first_air_date &&
-                    tvshow.first_air_date.substring(0, 4)
-                  }
-                  isMovie={false}
-                ></Poster>
-              ))}
-            </Section>
-          )}
-        </>
-      )}
-      {error && <Message text={error} color="red" />}
-      {movieResults &&
-        tvshowResults &&
-        movieResults.length === 0 &&
-        tvshowResults.length === 0 && (
-          <Message text="No results found" color="gray" />
+  <Container>
+    <Form onSubmit={handleSubmit}>
+      <Input
+        placeholder="Search Movies or TV Shows"
+        value={searchTerm}
+        onChange={updateTerm}
+      />
+    </Form>
+    {loading ? (
+      <Loader />
+    ) : (
+      <>
+        {movieResults && movieResults.length > 0 && (
+          <Section title="Movie Results">
+            {movieResults.map((movie) => (
+              <Poster
+                key={movie.id}
+                id={movie.id}
+                imageUrl={movie.poster_path}
+                title={movie.title}
+                rating={movie.vote_average}
+                year={movie.release_date && movie.release_date.substring(0, 4)}
+                isMovie={true}
+              ></Poster>
+            ))}
+          </Section>
         )}
-    </Container>
-  </>
+        {tvshowResults && tvshowResults.length > 0 && (
+          <Section title="TV Show Results">
+            {tvshowResults.map((tvshow) => (
+              <Poster
+                key={tvshow.id}
+                id={tvshow.id}
+                imageUrl={tvshow.poster_path}
+                title={tvshow.name}
+                rating={tvshow.vote_average}
+                year={
+                  tvshow.first_air_date && tvshow.first_air_date.substring(0, 4)
+                }
+                isMovie={false}
+              ></Poster>
+            ))}
+          </Section>
+        )}
+      </>
+    )}
+    {error && <Message text={error} color="red" />}
+    {movieResults &&
+      tvshowResults &&
+      movieResults.length === 0 &&
+      tvshowResults.length === 0 && (
+        <Message text="No results found" color="gray" />
+      )}
+  </Container>
 );
 
 SearchPresenter.propTypes = {
