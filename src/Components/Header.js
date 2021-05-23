@@ -42,22 +42,22 @@ function Header({ location: { pathname } }) {
     <Head>
       <List>
         <Item>
-          <SLink to="/" current={pathname === "/"}>
+          <SLink to="/" current={pathname === "/" ? "Yes" : null}>
             Home
           </SLink>
         </Item>
         <Item>
-          <SLink to="/tvshows" current={pathname === "/tvshows"}>
+          <SLink to="/tvshows" current={pathname === "/tvshows" ? "Yes" : null}>
             TV Shows
           </SLink>
         </Item>
         <Item>
-          <SLink to="/movies" current={pathname === "/movies"}>
+          <SLink to="/movies" current={pathname === "/movies" ? "Yes" : null}>
             Movies
           </SLink>
         </Item>
         <Item>
-          <SLink to="/search" current={pathname === "/search"}>
+          <SLink to="/search" current={pathname === "/search" ? "Yes" : null}>
             Search
           </SLink>
         </Item>

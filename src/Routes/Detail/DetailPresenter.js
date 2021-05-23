@@ -176,19 +176,19 @@ const DetailPresenter = ({ result, error, loading }) =>
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i class="fab fa-imdb"></i>
+                    <i className="fab fa-imdb"></i>
                   </a>
                 </Imdb>
               )}
               {result.homepage && (
                 <Homepage>
                   <a href={result.homepage} target="_blank" rel="noreferrer">
-                    <i class="fas fa-link"></i>
+                    <i className="fas fa-link"></i>
                   </a>
                 </Homepage>
               )}
               <Star>
-                <i class="fas fa-star"></i>
+                <i className="fas fa-star"></i>
               </Star>
               <Rating>
                 <div>

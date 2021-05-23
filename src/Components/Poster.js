@@ -61,7 +61,7 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => {
             }
           />
           <Rating>
-            <i class="fas fa-star"></i>&nbsp;{rating}/10
+            <i className="fas fa-star"></i>&nbsp;{rating}/10
           </Rating>
         </ImageContainer>
         <Title>
