@@ -22,6 +22,7 @@ const Rating = styled.span`
   opacity: 0;
   transition: opacity 0.2s linear;
   font-size: 1.7vw;
+  display: ${(props) => (props.isPerson ? "none" : "default")};
 `;
 
 const ImageContainer = styled.div`
@@ -29,7 +30,7 @@ const ImageContainer = styled.div`
   margin-bottom: 1vh;
   &:hover {
     ${Image} {
-      opacity: 0.3;
+      opacity: ${(props) => (props.isPerson ? 1 : 0.3)};
     }
     ${Rating} {
       opacity: 0.8;
@@ -47,28 +48,48 @@ const Year = styled.span`
   opacity: 0.4;
 `;
 
-const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => {
+const SLink = styled(Link)`
+  cursor: ${(props) => (props.isPerson ? "default" : "pointer")};
+`;
+
+const Poster = ({
+  id,
+  imageUrl,
+  title,
+  rating,
+  year,
+  isMovie = false,
+  isPerson,
+  isCompany,
+}) => {
   return (
-    <Link to={isMovie ? `/movie/${id}` : `tvshow/${id}`}>
+    <SLink
+      isPerson={isPerson}
+      to={isPerson ? null : isMovie ? `/movie/${id}` : `tvshow/${id}`}
+    >
       <Container>
-        <ImageContainer>
+        <ImageContainer isPerson={isPerson}>
           <Image
             bgUrl={
               imageUrl
                 ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                : isCompany
+                ? require("../assets/company.jpg").default
+                : isPerson
+                ? require("../assets/person.png").default
                 : require("../assets/noPoster.jpg").default
             }
           />
-          <Rating>
+          <Rating isPerson={isPerson}>
             <i className="fas fa-star"></i>&nbsp;{rating}/10
           </Rating>
         </ImageContainer>
         <Title>
           {title.length > 30 ? `${title.substring(0, 30)}...` : title}
         </Title>
-        <Year>{year}</Year>
+        {year && <Year>{year}</Year>}
       </Container>
-    </Link>
+    </SLink>
   );
 };
 
