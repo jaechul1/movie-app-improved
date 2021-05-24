@@ -17,12 +17,12 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 5vh 3vw 5vh 3vw;
+  padding: 5vh 10vw 5vh 10vw;
 `;
 
 const Cover = styled.div`
-  width: 28%;
-  height: 100%;
+  width: 26vw;
+  height: 39vw;
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
@@ -30,14 +30,15 @@ const Cover = styled.div`
 `;
 
 const Data = styled.div`
-  width: 72%;
-  padding-left: 3vw;
+  width: 68%;
+  padding-left: 5vw;
+  padding-top: 2vh;
   display: flex;
   flex-direction: column;
 `;
 
 const HeaderBox = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -106,26 +107,10 @@ const Divider = styled.span`
 `;
 
 const Overview = styled.p`
-  width: 100%;
-  font-size: 1.2vw;
+  width: 90%;
+  font-size: 1.4vw;
   opacity: 0.8;
   line-height: 1.5;
-`;
-
-const YoutubeEmbed = styled.div`
-  border-radius: 3%;
-  margin-top: 2vh;
-  width: 100%;
-  flex-grow: 1;
-  overflow: hidden;
-  position: relative;
-  & iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-  }
 `;
 
 const DetailMain = ({ result, error, loading, titleUpdater }) =>
@@ -212,28 +197,20 @@ const DetailMain = ({ result, error, loading, titleUpdater }) =>
                   : "TBA"
                 : "TBA"}
             </Item>
+            <Divider>&nbsp;•&nbsp;</Divider>
+            <Item>
+              {result.production_countries
+                ? result.production_countries.length > 0
+                  ? result.production_countries.map((country, index) =>
+                      index + 1 === result.production_countries.length
+                        ? country.name
+                        : `${country.name}, `
+                    )
+                  : "TBA"
+                : "TBA"}
+            </Item>
           </ItemContainer>
-          <Overview>
-            {result.overview.length > 500
-              ? `${result.overview.substring(
-                  0,
-                  (result.overview + " ").lastIndexOf(" ", 500)
-                )}...`
-              : result.overview}
-          </Overview>
-          {result.videos.results[0] && (
-            <YoutubeEmbed>
-              <iframe
-                width="853"
-                height="480"
-                src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={`${result.title || result.name} Embedded`}
-              />
-            </YoutubeEmbed>
-          )}
+          <Overview>{result.overview}</Overview>
         </Data>
       </Content>
       {error && <Message text={error} color="red" />}

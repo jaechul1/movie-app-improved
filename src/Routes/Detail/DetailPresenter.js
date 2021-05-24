@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 import DetailMain from "../../Components/DetailMain";
 import DetailCast from "../../Components/DetailCast";
 import Loader from "../../Components/Loader";
+import YoutubeEmbed from "../../Components/YoutubeEmbed";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-const MainContainer = styled.div`
-  overflow-y: hidden;
-`;
 
 const Backdrop = styled.div`
   width: 100%;
@@ -22,6 +19,32 @@ const Backdrop = styled.div`
   filter: blur(1px);
 `;
 
+const I = styled.i`
+  font-size: 3vw;
+  position: fixed;
+  top: 50vh;
+  left: ${(props) => (props.className.includes("left") ? "1vw" : "default")};
+  right: ${(props) => (props.className.includes("right") ? "1vw" : "default")};
+  cursor: pointer;
+  z-index: 2;
+`;
+
+const LeftArrow = (props) => {
+  return (
+    <div onClick={props.onClick}>
+      <I className="fas fa-chevron-left"></I>
+    </div>
+  );
+};
+
+const RightArrow = (props) => {
+  return (
+    <div onClick={props.onClick}>
+      <I className="fas fa-chevron-right"></I>
+    </div>
+  );
+};
+
 const DetailPresenter = ({
   result,
   cast,
@@ -30,14 +53,14 @@ const DetailPresenter = ({
   loading,
   titleUpdater,
 }) => {
+  const slider = useRef(null);
   const settings = {
     dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    fade: true,
+    speed: 1000,
     adaptiveHeight: true,
-    arrow: true,
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
   };
   return loading ? (
     <Loader />
@@ -46,16 +69,20 @@ const DetailPresenter = ({
       <Backdrop
         bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
       />
-      <Slider {...settings}>
-        <MainContainer>
+      <Slider ref={slider} {...settings}>
+        <div>
           <DetailMain
             result={result}
             error={error}
             loading={loading}
             titleUpdater={titleUpdater}
           />
-        </MainContainer>
-        {console.log(cast, crew)}
+        </div>
+        {result.videos.results && result.videos.results.length > 0 && (
+          <div>
+            <YoutubeEmbed result={result} />
+          </div>
+        )}
         {cast && crew && (cast.length > 0 || crew.length > 0) && (
           <div>
             <DetailCast

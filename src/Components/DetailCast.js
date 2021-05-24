@@ -11,26 +11,39 @@ const Content = styled.div`
   padding: 5vh 3vw 0 3vw;
 `;
 
+const Company = styled.div`
+  font-size: 1.5vw;
+  color: rgba(255, 255, 255, 0.5);
+  & + div {
+    margin-top: 1.5vh;
+  }
+`;
+
+const Img = styled.img`
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  padding: 1vh 1vw 1vh 1vw;
+`;
+
 const DetailCast = ({ result, cast, crew, error, loading }) =>
   loading ? (
     <Loader />
   ) : (
     <Container>
       <Content>
-        {cast.length > 0 && (
-          <Section title={"Production"}>
-            {result.production_companies.map((company) => (
-              <Poster
-                key={company.id + Date.now()}
-                id={company.id}
-                imageUrl={company.logo_path}
-                title={company.name}
-                year={company.origin_country}
-                isMovie={false}
-                isPerson={true}
-                isCompany={true}
-              />
-            ))}
+        {result.production_companies.length > 0 && (
+          <Section title={"Production"} isCompany={true}>
+            {result.production_companies.map((company) =>
+              company.logo_path ? (
+                <Img
+                  src={`https://image.tmdb.org/t/p/w300${company.logo_path}`}
+                  alt={company.name}
+                  width="300"
+                />
+              ) : (
+                <Company>{company.name}</Company>
+              )
+            )}
           </Section>
         )}
         {cast.length > 0 && (

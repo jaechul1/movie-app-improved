@@ -25,18 +25,21 @@ const Title = styled.span`
 
 const Grid = styled.div`
   margin-top: calc(2vw + 3vh);
-  display: grid;
+  display: ${(props) => (props.isCompany ? "flex" : "grid")};
+  flex-direction: ${(props) => (props.isCompany ? "column" : "default")};
   grid-template-columns: repeat(7, 1fr);
   column-gap: 1.5vw;
   row-gap: 2vh;
-  justify-content: center;
+  justify-content: ${(props) => (props.isCompany ? "default" : "center")};
+  align-items: ${(props) => (props.isCompany ? "center" : "default")};
+  padding: ${(props) => (props.isCompany ? "2vh 0 2vh 0" : "default")};
 `;
 
-function Section({ title, children }) {
+function Section({ title, children, isCompany }) {
   return (
     <Container>
       <Title empty={title === ""}>{title}</Title>
-      <Grid>{children}</Grid>
+      <Grid isCompany={isCompany}>{children}</Grid>
     </Container>
   );
 }
