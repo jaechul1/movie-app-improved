@@ -41,7 +41,7 @@ const SLink = styled(Link)`
 const Rank = styled.div`
   position: absolute;
   top: 0.8vh;
-  left: 1.2vw;
+  left: 1vw;
   font-weight: 400;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 2px 10px 10px 5px;
