@@ -17,7 +17,6 @@ const List = styled.ul`
   align-items: center;
   position: relative;
   bottom: 0.5vh;
-  padding: 0 2vw;
 `;
 
 const Item = styled.li`
@@ -26,7 +25,7 @@ const Item = styled.li`
 `;
 
 const SLink = styled(Link)`
-  font-weight: 700;
+  font-weight: 400;
   border-radius: 1.5vw;
   padding: 1.5vh 3vw;
   box-shadow: ${(props) =>

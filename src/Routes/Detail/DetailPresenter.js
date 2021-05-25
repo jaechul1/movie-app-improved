@@ -34,7 +34,7 @@ const I = styled.i`
 const LeftArrow = (props) => {
   return (
     <div onClick={props.onClick}>
-      <I className="fas fa-chevron-left"></I>
+      <I className="fas fa-chevron-left Arrow"></I>
     </div>
   );
 };
@@ -42,7 +42,7 @@ const LeftArrow = (props) => {
 const RightArrow = (props) => {
   return (
     <div onClick={props.onClick}>
-      <I className="fas fa-chevron-right"></I>
+      <I className="fas fa-chevron-right Arrow"></I>
     </div>
   );
 };

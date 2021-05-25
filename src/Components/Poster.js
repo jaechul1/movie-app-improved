@@ -40,9 +40,9 @@ const SLink = styled(Link)`
 
 const Rank = styled.div`
   position: absolute;
-  top: 0.5vh;
-  left: 0.8vw;
-  font-weight: 700;
+  top: 0.8vh;
+  left: 1.2vw;
+  font-weight: 400;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 2px 10px 10px 5px;
   border-radius: 20%;
@@ -108,8 +108,8 @@ const Poster = ({
           />
           {isTrending && (
             <Rank>
-              <Prefix>#</Prefix>
-              <Number>{rank}</Number>
+              <Prefix className="Prefix">#</Prefix>
+              <Number className="Number">{rank}</Number>
             </Rank>
           )}
           <Rating isPerson={isPerson}>

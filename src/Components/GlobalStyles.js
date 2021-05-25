@@ -23,12 +23,29 @@ const globalStyles = createGlobalStyle`
         padding-bottom: calc(100% / (2/3));
     }
     @media (max-width: 1200px) {
-        body {
+        body, .Company {
             font-size: 18px;
         }
     }
+    @media (max-width: 1000px) {
+        .RatingText {
+            font-size: 10px;
+        }
+        .SmallText {
+            font-size: 6px;
+        }
+        .CountText {
+            font-size: 8px;
+        }
+        .Prefix {
+            font-size: 25px;
+        }
+        .Number {
+            font-size: 20px;
+        }
+    }
     @media (max-width: 800px) {
-        .Header {
+        .Header, .Arrow {
             font-size: 24px;
         }
         .SectionTitle {
@@ -37,17 +54,20 @@ const globalStyles = createGlobalStyle`
         .DetailTitle {
             font-size: 16px;
         }
-        .Icon, .Company {
+        .Icon {
             font-size: 12px;
         }
         .Overview {
             font-size: 11px;
         }
+        .ItemContainer {
+            font-size: 9px;
+        }
         .YoutubeType {
             font-size: 20px;
         }
     }
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
         .Header {
             font-size: 18px;
         }
@@ -59,7 +79,7 @@ const globalStyles = createGlobalStyle`
     }
     @media (max-width: 400px) {
         .Header {
-            font-size: 12px;
+            font-size: 15px;
         }
     }
 `;

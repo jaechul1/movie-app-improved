@@ -30,7 +30,7 @@ const Data = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin: 30px 0;
 `;
 
 const HeaderBox = styled.div`
@@ -141,12 +141,12 @@ const DetailMain = ({ result, error, loading, titleUpdater }) =>
           <Star className="Icon">
             <i className="fas fa-star"></i>
           </Star>
-          <Rating>
+          <Rating className="RatingText">
             <div>
               <span>{result.vote_average}</span>
-              <SmallText>/10</SmallText>
+              <SmallText className="SmallText">/10</SmallText>
             </div>
-            <Count>
+            <Count className="CountText">
               {result.vote_count
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -164,7 +164,7 @@ const DetailMain = ({ result, error, loading, titleUpdater }) =>
       />
 
       <Data>
-        <ItemContainer>
+        <ItemContainer className="ItemContainer">
           <Item>
             {result.release_date
               ? result.release_date.substring(0, 4)

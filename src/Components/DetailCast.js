@@ -14,8 +14,8 @@ const Content = styled.div`
 const Company = styled.div`
   font-size: 1.5vw;
   color: rgba(255, 255, 255, 0.5);
-  & + div {
-    margin-top: 1.5vh;
+  &:not(:first-child) {
+    margin-top: 10px;
   }
 `;
 
@@ -23,6 +23,9 @@ const Img = styled.img`
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 15px;
   padding: 1vh 1vw 1vh 1vw;
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
 `;
 
 const DetailCast = ({ result, cast, crew, error, loading }) =>
