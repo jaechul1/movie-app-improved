@@ -9,20 +9,16 @@ const Animation = keyframes`
 `;
 
 const Container = styled.div`
-  height: calc(94vh - 5vw);
   animation: ${Animation} 1s ease-out;
-`;
-
-const Content = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
   padding: 5vh 10vw 5vh 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Cover = styled.div`
-  width: 26vw;
-  height: 39vw;
+  width: 80vw;
+  height: 120vw;
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
@@ -30,18 +26,19 @@ const Cover = styled.div`
 `;
 
 const Data = styled.div`
-  width: 68%;
-  padding-left: 5vw;
-  padding-top: 2vh;
+  width: 75vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
 `;
 
 const HeaderBox = styled.div`
-  width: 80%;
+  width: 75vw;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 30px;
 `;
 
 const TitleBox = styled.div`
@@ -57,13 +54,13 @@ const Title = styled.div`
 const Imdb = styled.div`
   font-size: 1.5vw;
   color: #f5c518;
-  margin-right: 0.5vw;
+  margin-right: 0.7vw;
 `;
 
 const Homepage = styled.div`
   font-size: 1.5vw;
   opacity: 0.5;
-  margin-right: 0.5vw;
+  margin-right: 0.4vw;
 `;
 
 const RatingBox = styled.div`
@@ -72,13 +69,13 @@ const RatingBox = styled.div`
 `;
 
 const Star = styled.div`
-  font-size: 1.3vw;
+  font-size: 1.5vw;
   color: #e4bb24;
 `;
 
 const Rating = styled.div`
   font-size: 1vw;
-  margin-left: 0.3vw;
+  margin-left: 5px;
 `;
 
 const SmallText = styled.span`
@@ -91,11 +88,10 @@ const Count = styled.div`
   opacity: 0.5;
   display: flex;
   justify-content: center;
-  margin-top: 0.1vh;
+  margin-top: 1px;
 `;
 
 const ItemContainer = styled.div`
-  margin: 3vh 0;
   font-size: 1vw;
   opacity: 0.5;
 `;
@@ -103,14 +99,14 @@ const ItemContainer = styled.div`
 const Item = styled.span``;
 
 const Divider = styled.span`
-  margin: 0 0.3vw;
+  margin: 0 3px;
 `;
 
 const Overview = styled.p`
-  width: 90%;
   font-size: 1.4vw;
   opacity: 0.8;
   line-height: 1.5;
+  margin-top: 20px;
 `;
 
 const DetailMain = ({ result, error, loading, titleUpdater }) =>
@@ -119,100 +115,100 @@ const DetailMain = ({ result, error, loading, titleUpdater }) =>
   ) : (
     <Container>
       {titleUpdater(`${result.title || result.name} | MAI`)}
-      <Content>
-        <Cover
-          bgImage={
-            result.poster_path
-              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-              : require("../assets/noPoster.jpg").default
-          }
-        />
-        <Data>
-          <HeaderBox>
-            <TitleBox>
-              <Title>{result.title || result.name}</Title>
-            </TitleBox>
-            <RatingBox>
-              {result.imdb_id && (
-                <Imdb>
-                  <a
-                    href={`https://www.imdb.com/title/${result.imdb_id}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fab fa-imdb"></i>
-                  </a>
-                </Imdb>
-              )}
-              {result.homepage && (
-                <Homepage>
-                  <a href={result.homepage} target="_blank" rel="noreferrer">
-                    <i className="fas fa-link"></i>
-                  </a>
-                </Homepage>
-              )}
-              <Star>
-                <i className="fas fa-star"></i>
-              </Star>
-              <Rating>
-                <div>
-                  <span>{result.vote_average}</span>
-                  <SmallText>/10</SmallText>
-                </div>
-                <Count>
-                  {result.vote_count
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                </Count>
-              </Rating>
-            </RatingBox>
-          </HeaderBox>
-          <ItemContainer>
-            <Item>
-              {result.release_date
-                ? result.release_date.substring(0, 4)
-                : result.first_air_date
-                ? `${result.first_air_date.substring(0, 4)}~`
-                : "TBA"}
-            </Item>
-            <Divider>&nbsp;•&nbsp;</Divider>
-            <Item>
-              {result.runtime
-                ? `${result.runtime} min`
-                : result.episode_run_time
-                ? result.episode_run_time[0]
-                  ? `${result.episode_run_time[0]} min`
-                  : "TBA"
-                : "TBA"}
-            </Item>
-            <Divider>&nbsp;•&nbsp;</Divider>
-            <Item>
-              {result.genres
-                ? result.genres.length > 0
-                  ? result.genres.map((genre, index) =>
-                      index + 1 === result.genres.length
-                        ? genre.name
-                        : `${genre.name}, `
-                    )
-                  : "TBA"
-                : "TBA"}
-            </Item>
-            <Divider>&nbsp;•&nbsp;</Divider>
-            <Item>
-              {result.production_countries
-                ? result.production_countries.length > 0
-                  ? result.production_countries.map((country, index) =>
-                      index + 1 === result.production_countries.length
-                        ? country.name
-                        : `${country.name}, `
-                    )
-                  : "TBA"
-                : "TBA"}
-            </Item>
-          </ItemContainer>
-          <Overview>{result.overview}</Overview>
-        </Data>
-      </Content>
+      <HeaderBox>
+        <TitleBox>
+          <Title className="DetailTitle">{result.title || result.name}</Title>
+        </TitleBox>
+        <RatingBox>
+          {result.imdb_id && (
+            <Imdb className="Icon">
+              <a
+                href={`https://www.imdb.com/title/${result.imdb_id}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="fab fa-imdb"></i>
+              </a>
+            </Imdb>
+          )}
+          {result.homepage && (
+            <Homepage className="Icon">
+              <a href={result.homepage} target="_blank" rel="noreferrer">
+                <i className="fas fa-link"></i>
+              </a>
+            </Homepage>
+          )}
+          <Star className="Icon">
+            <i className="fas fa-star"></i>
+          </Star>
+          <Rating>
+            <div>
+              <span>{result.vote_average}</span>
+              <SmallText>/10</SmallText>
+            </div>
+            <Count>
+              {result.vote_count
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Count>
+          </Rating>
+        </RatingBox>
+      </HeaderBox>
+
+      <Cover
+        bgImage={
+          result.poster_path
+            ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+            : require("../assets/noPoster.jpg").default
+        }
+      />
+
+      <Data>
+        <ItemContainer>
+          <Item>
+            {result.release_date
+              ? result.release_date.substring(0, 4)
+              : result.first_air_date
+              ? `${result.first_air_date.substring(0, 4)}~`
+              : "TBA"}
+          </Item>
+          <Divider>&nbsp;•&nbsp;</Divider>
+          <Item>
+            {result.runtime
+              ? `${result.runtime} min`
+              : result.episode_run_time
+              ? result.episode_run_time[0]
+                ? `${result.episode_run_time[0]} min`
+                : "TBA"
+              : "TBA"}
+          </Item>
+          <Divider>&nbsp;•&nbsp;</Divider>
+          <Item>
+            {result.genres
+              ? result.genres.length > 0
+                ? result.genres.map((genre, index) =>
+                    index + 1 === result.genres.length
+                      ? genre.name
+                      : `${genre.name}, `
+                  )
+                : "TBA"
+              : "TBA"}
+          </Item>
+          <Divider>&nbsp;•&nbsp;</Divider>
+          <Item>
+            {result.production_countries
+              ? result.production_countries.length > 0
+                ? result.production_countries.map((country, index) =>
+                    index + 1 === result.production_countries.length
+                      ? country.name
+                      : `${country.name}, `
+                  )
+                : "TBA"
+              : "TBA"}
+          </Item>
+        </ItemContainer>
+        <Overview className="Overview">{result.overview}</Overview>
+      </Data>
       {error && <Message text={error} color="red" />}
     </Container>
   );

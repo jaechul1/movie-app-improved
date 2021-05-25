@@ -31,7 +31,7 @@ const YoutubeEmbed = ({ result }) => {
   return (
     <VideoBox>
       {result.videos.results.map((video) => (
-        <Title>
+        <Title className="YoutubeType">
           {`-${video.type}-`}
           <iframe
             src={`https://www.youtube.com/embed/${video.key}`}

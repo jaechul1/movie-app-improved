@@ -41,7 +41,7 @@ const DetailCast = ({ result, cast, crew, error, loading }) =>
                   width="300"
                 />
               ) : (
-                <Company>{company.name}</Company>
+                <Company className="Company">{company.name}</Company>
               )
             )}
           </Section>

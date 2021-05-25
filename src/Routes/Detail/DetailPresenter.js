@@ -5,6 +5,8 @@ import DetailMain from "../../Components/DetailMain";
 import DetailCast from "../../Components/DetailCast";
 import Loader from "../../Components/Loader";
 import YoutubeEmbed from "../../Components/YoutubeEmbed";
+import Section from "../../Components/Section";
+import Poster from "../../Components/Poster";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -45,6 +47,10 @@ const RightArrow = (props) => {
   );
 };
 
+const SectionContainer = styled.div`
+  padding: 5vh 3vw 0 3vw;
+`;
+
 const DetailPresenter = ({
   result,
   cast,
@@ -78,6 +84,37 @@ const DetailPresenter = ({
             titleUpdater={titleUpdater}
           />
         </div>
+        {result.seasons && result.seasons.length > 0 && (
+          <SectionContainer>
+            <Section title="Seasons">
+              {result.seasons.map((season) => (
+                <Poster
+                  key={season.id + Date.now()}
+                  id={season.id}
+                  imageUrl={season.poster_path}
+                  title={season.name}
+                  year={season.air_date && `${season.air_date.substring(0, 4)}`}
+                  isPerson={true}
+                  isSection={true}
+                />
+              ))}
+            </Section>
+          </SectionContainer>
+        )}
+        {result.belongs_to_collection && (
+          <SectionContainer>
+            <Section title="Collection">
+              <Poster
+                key={result.belongs_to_collection.id + Date.now()}
+                id={result.belongs_to_collection.id}
+                imageUrl={result.belongs_to_collection.poster_path}
+                title={result.belongs_to_collection.name}
+                isPerson={true}
+                isSection={true}
+              />
+            </Section>
+          </SectionContainer>
+        )}
         {result.videos.results && result.videos.results.length > 0 && (
           <div>
             <YoutubeEmbed result={result} />

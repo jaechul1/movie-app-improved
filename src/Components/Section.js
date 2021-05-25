@@ -27,9 +27,9 @@ const Grid = styled.div`
   margin-top: calc(2vw + 3vh);
   display: ${(props) => (props.isCompany ? "flex" : "grid")};
   flex-direction: ${(props) => (props.isCompany ? "column" : "default")};
-  grid-template-columns: repeat(7, 1fr);
-  column-gap: 1.5vw;
-  row-gap: 2vh;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  column-gap: 20px;
+  row-gap: 20px;
   justify-content: ${(props) => (props.isCompany ? "default" : "center")};
   align-items: ${(props) => (props.isCompany ? "center" : "default")};
   padding: ${(props) => (props.isCompany ? "2vh 0 2vh 0" : "default")};
@@ -38,7 +38,9 @@ const Grid = styled.div`
 function Section({ title, children, isCompany }) {
   return (
     <Container>
-      <Title empty={title === ""}>{title}</Title>
+      <Title className="SectionTitle" empty={title === ""}>
+        {title}
+      </Title>
       <Grid isCompany={isCompany}>{children}</Grid>
     </Container>
   );

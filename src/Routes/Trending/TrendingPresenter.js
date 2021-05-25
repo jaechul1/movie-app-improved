@@ -20,9 +20,10 @@ const TrendingPresenter = ({ results, error, loading }) =>
               (media) =>
                 media.media_type === "tv" || media.media_type === "movie"
             )
-            .map((media) => (
+            .map((media, index) => (
               <Poster
-                key={media.id}
+                rank={index + 1}
+                key={media.id + Date.now()}
                 id={media.id}
                 imageUrl={media.poster_path}
                 title={media.title || media.name}
@@ -35,6 +36,7 @@ const TrendingPresenter = ({ results, error, loading }) =>
                     : ""
                 }
                 isMovie={media.media_type === "movie"}
+                isTrending={true}
               ></Poster>
             ))}
         </Section>

@@ -17,6 +17,7 @@ const List = styled.ul`
   align-items: center;
   position: relative;
   bottom: 0.5vh;
+  padding: 0 2vw;
 `;
 
 const Item = styled.li`
@@ -31,10 +32,7 @@ const SLink = styled(Link)`
   box-shadow: ${(props) =>
     props.current ? "0 0.5vh 0.8vh rgb(173, 216, 230)" : "transparent"};
   transition: box-shadow ease-in-out 0.2s;
-  font-size: ${(props) => (props.current ? "3.2vw" : "3vw")};
-  &:hover {
-    font-size: 3.2vw;
-  }
+  font-size: 3vw;
   cursor: ${(props) => (props.current ? "default" : "pointer")};
   pointer-events: ${(props) => (props.current ? "none" : "default")};
 `;
@@ -44,22 +42,38 @@ function Header({ location: { pathname } }) {
     <Head>
       <List>
         <Item>
-          <SLink to="/" current={pathname === "/" ? "Yes" : null}>
+          <SLink
+            className="Header"
+            to="/"
+            current={pathname === "/" ? "Yes" : null}
+          >
             Trending
           </SLink>
         </Item>
         <Item>
-          <SLink to="/tvshows" current={pathname === "/tvshows" ? "Yes" : null}>
+          <SLink
+            className="Header"
+            to="/tvshows"
+            current={pathname === "/tvshows" ? "Yes" : null}
+          >
             TV Shows
           </SLink>
         </Item>
         <Item>
-          <SLink to="/movies" current={pathname === "/movies" ? "Yes" : null}>
+          <SLink
+            className="Header"
+            to="/movies"
+            current={pathname === "/movies" ? "Yes" : null}
+          >
             Movies
           </SLink>
         </Item>
         <Item>
-          <SLink to="/search" current={pathname === "/search" ? "Yes" : null}>
+          <SLink
+            className="Header"
+            to="/search"
+            current={pathname === "/search" ? "Yes" : null}
+          >
             Search
           </SLink>
         </Item>
